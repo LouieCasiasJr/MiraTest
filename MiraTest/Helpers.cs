@@ -8,6 +8,7 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
 using MiraTest.PageObjects;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace MiraTest
 {
@@ -182,7 +183,8 @@ namespace MiraTest
 
 		public static int innerNumeric(this string text)
 		{
-			string innerNumber = string.Join(string.Empty, Regex.Matches(text, @"\d+"));
+            MatchCollection nums = Regex.Matches(text, @"\d+");
+            string innerNumber = string.Join(";", from Match match in nums select match.Value);
 			int number = Int32.Parse(innerNumber);
 
 			return number;

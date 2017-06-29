@@ -19,16 +19,18 @@ namespace MiraTest
     {
         private TestHelper Test;
 		private IWebDriver driver;
+        private TestHelper.browserType browser;
 
-        public SearchTests(TestHelper.browserType browser)
+        public SearchTests(TestHelper.browserType webbrowser)
         {
-            Test = new TestHelper(browser);
-            driver = Test.driver;
+            browser = webbrowser;
         }
 
         [SetUp]
         public void BeforeEachTest()
         {
+			Test = new TestHelper(browser);
+			driver = Test.driver;
             Test.LaunchStartPage();
         }
 
